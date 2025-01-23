@@ -18,4 +18,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         return data
 
 
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=150)
+    password = serializers.CharField(min_length=8, write_only=True)
 
+    def validate(self, data):
+        user = UserModel.objects.filter(username=data['username']).first()
+        if user and user.check_password(data['password']):
+            return data
+        else:
+            raise serializers.ValidationError({'username': 'Invalid credentials'})

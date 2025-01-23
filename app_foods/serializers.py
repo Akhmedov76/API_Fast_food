@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import UserModel
+from .models import UserModel, MenuItemModel, OrderModel, OrderItemModel
 
 UserChoice = [
     'admin', 'user', 'courier'
@@ -36,3 +36,29 @@ class LoginSerializer(serializers.Serializer):
             return data
         else:
             raise serializers.ValidationError({'username': 'Invalid credentials'})
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserModel
+        fields = ['id', 'username', 'role', 'status']
+
+
+class MenuItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuItemModel
+        fields = '__all__'
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    order_items = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = OrderModel
+        fields = '__all__'
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItemModel
+        fields = '__all__'

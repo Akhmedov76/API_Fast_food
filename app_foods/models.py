@@ -1,36 +1,51 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, AbstractBaseUser
 
 
-class User(AbstractUser):
-    ROLE_CHOICES = [
-        ('admin', 'Admin'),
-        ('courier', 'Courier'),
-        ('user', 'User'),
+class UserRoleChoice(models.TextChoices):
+    """
+    UserRoleChoice is a class that contains choices for the user role.
+    """
+    ADMIN = "admin", "Admin"
+    USER = "user", "User"
+    COURIER = "courier", "Courier"
 
-    ]
+
+class UserStatusChoice(models.TextChoices):
+    """
+    UserStatusChoice is a class that contains choices for the user status.
+    """
+    ACTIVE = "active", "Active"
+    DELETE = "delete", "Delete"
+    INACTIVE = "inactive", "Inactive"
+
+
+class OrderStatusChoice(models.TextChoices):
+    """
+    OrderStatusChoice is a class that contains choices for the order status.
+    """
+    PENDING = "pending", "Pending"
+    ACCEPTED = "accepted", "Accepted"
+    COMPLETED = "completed", "Completed"
+    CANCELLED = "cancelled", "Cancelled"
+
+
+class UserModel(AbstractUser):
+    """
+    UserModel is a custom user model that extends the AbstractUser model provided by Django.
+    It has additional fields such as role, status.
+    The role field is a CharField with choices to specify the user's role in the system.
+    The status field is a CharField to specify the user's status in the system.
+    """
+
     role = models.CharField(
-        max_length=10,
-        choices=ROLE_CHOICES,
-        default='user',
-    )
-
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='custom_user_groups'
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='custom_user_permissions'
-    )
-
-    @property
-    def is_admin(self):
-        return self.role == 'admin'
-
-    class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
+        default=UserRoleChoice.USER,
+        max_length=15,
+        choices=UserRoleChoice.choices)
+    status = models.CharField(
+        default=UserStatusChoice.ACTIVE,
+        max_length=15,
+        choices=UserStatusChoice.choices)
 
 
 class MenuItemModel(models.Model):
@@ -50,16 +65,18 @@ class MenuItemModel(models.Model):
 
 
 class OrderModel(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     delivery_address = models.TextField()
     distance_km = models.FloatField()
-    is_accepted = models.BooleanField(default=False)
-    is_completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    order_status = models.CharField(
+        default=OrderStatusChoice.PENDING,
+        max_length=15,
+        choices=OrderStatusChoice.choices
+    )
 
-    @property
-    def delivery_time(self):
-        preparation_time = 5 * (self.items.count() // 4 + 1)
+    def calculate_delivery_time(self):
+        preparation_time = 5 * (self.order_items.count() // 4 + 1)
         delivery_time = self.distance_km * 3
         return preparation_time + delivery_time
 
@@ -69,7 +86,7 @@ class OrderModel(models.Model):
 
 
 class OrderItemModel(models.Model):
-    order = models.ForeignKey(OrderModel, on_delete=models.CASCADE)
+    order = models.ForeignKey(OrderModel, on_delete=models.CASCADE, related_name="order_items")
     menu_item = models.ForeignKey(MenuItemModel, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
 

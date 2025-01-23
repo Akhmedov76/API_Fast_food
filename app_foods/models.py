@@ -1,23 +1,36 @@
 from django.db import models
-
 from django.contrib.auth.models import AbstractUser
 
 
-class UserModel(AbstractUser):
-    ROLE_CHOICES = [(
+class User(AbstractUser):
+    ROLE_CHOICES = [
         ('admin', 'Admin'),
-        ('user', 'User'),
         ('courier', 'Courier'),
-    )]
+        ('user', 'User'),
+
+    ]
     role = models.CharField(
         max_length=10,
         choices=ROLE_CHOICES,
         default='user',
     )
 
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='custom_user_groups'
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='custom_user_permissions'
+    )
+
     @property
     def is_admin(self):
         return self.role == 'admin'
+
+    class Meta:
+        verbose_name = "User"
+        verbose_name_plural = "Users"
 
 
 class MenuItemModel(models.Model):
@@ -31,9 +44,13 @@ class MenuItemModel(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Menu Item"
+        verbose_name_plural = "Menu Items"
+
 
 class OrderModel(models.Model):
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     delivery_address = models.TextField()
     distance_km = models.FloatField()
     is_accepted = models.BooleanField(default=False)
@@ -46,6 +63,10 @@ class OrderModel(models.Model):
         delivery_time = self.distance_km * 3
         return preparation_time + delivery_time
 
+    class Meta:
+        verbose_name = "Order"
+        verbose_name_plural = "Orders"
+
 
 class OrderItemModel(models.Model):
     order = models.ForeignKey(OrderModel, on_delete=models.CASCADE)
@@ -54,3 +75,7 @@ class OrderItemModel(models.Model):
 
     def __str__(self):
         return f"{self.menu_item.name} x {self.quantity}"
+
+    class Meta:
+        verbose_name = "Order Item"
+        verbose_name_plural = "Order Items"

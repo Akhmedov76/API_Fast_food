@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-class User(AbstractUser):
+class UserModel(AbstractUser):
     ROLE_CHOICES = [(
         ('admin', 'Admin'),
         ('user', 'User'),
@@ -20,7 +20,7 @@ class User(AbstractUser):
         return self.role == 'admin'
 
 
-class MenuItem(models.Model):
+class MenuItemModel(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()
@@ -33,3 +33,12 @@ class MenuItem(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+
+class OrderModel(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    delivery_address = models.TextField()
+    distance_km = models.FloatField()
+    is_accepted = models.BooleanField(default=False)
+    is_completed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)

@@ -31,9 +31,6 @@ class MenuItemModel(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
-        ordering = ['-created_at']
-
 
 class OrderModel(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
@@ -42,3 +39,9 @@ class OrderModel(models.Model):
     is_accepted = models.BooleanField(default=False)
     is_completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def delivery_time(self):
+        preparation_time = 5 * (self.items.count() // 4 + 1)
+        delivery_time = self.distance_km * 3
+        return preparation_time + delivery_time

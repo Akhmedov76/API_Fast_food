@@ -1,9 +1,11 @@
-from django.urls import path
+from rest_framework.routers import SimpleRouter
+from .views import AuthViewSet
 
-from .views import RegisterView, LoginView
+app_name = "auth"
+router = SimpleRouter()
+router.register('Auth', AuthViewSet, basename='auth')
 
-app_name = 'accounts'
 urlpatterns = [
-    path('register/', RegisterView.as_view(), name='register'),
-    path('login/', LoginView.as_view(), name='login'),
+
+    *router.urls,
 ]

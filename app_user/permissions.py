@@ -2,9 +2,7 @@ from rest_framework.permissions import BasePermission
 
 """
 Permission classes for the food ordering application.
-
 IsAdmin: Only staff users can access this viewset.
-IsWaiter: Only waiters can access this viewset.
 IsUser: Only authenticated users can access this viewset.
 """
 
@@ -12,11 +10,6 @@ IsUser: Only authenticated users can access this viewset.
 class IsAdmin(BasePermission):
     def has_permission(self, request, view):
         return request.user and request.user.is_staff
-
-
-class IsWaiter(BasePermission):
-    def has_permission(self, request, view):
-        return request.user and request.user.role == 'waiter'
 
 
 class IsUser(BasePermission):

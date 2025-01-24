@@ -1,0 +1,9 @@
+<h1>Pending Orders</h1>
+<ul>
+  {% for order in orders %}
+    <li>{{ order.user.username }} - {{ order.created_at }}
+        <a href="{% url 'accept_order' order.id %}">Accept</a>
+        <a href="{% url 'complete_order' order.id %}">Complete</a>
+    </li>
+  {% endfor %}
+</ul>

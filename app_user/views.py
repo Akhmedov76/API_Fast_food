@@ -1,15 +1,11 @@
+from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework.generics import CreateAPIView
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet, ModelViewSet
+from rest_framework.response import Response
 
-from app_foods.models import UserModel, MenuItemModel, OrderModel, OrderItemModel
-from app_foods.permissions import IsAdmin, IsWaiter
-from app_foods.serializers import RegisterSerializer, LoginSerializer, UserSerializer, MenuItemSerializer, \
-    OrderSerializer, OrderItemSerializer
+from app_user.models import UserModel
+from app_user.serializers import RegisterSerializer, LoginSerializer, UserSerializer
 
 
 class AuthViewSet(ViewSet):
@@ -34,19 +30,3 @@ class AuthViewSet(ViewSet):
 class UserViewSet(ModelViewSet):
     queryset = UserModel.objects.all()
     serializer_class = UserSerializer
-
-
-class MenuItemViewSet(ModelViewSet):
-    queryset = MenuItemModel.objects.all()
-    serializer_class = MenuItemSerializer
-    permission_classes = [IsAuthenticated, IsAdmin | IsWaiter]
-
-
-class OrderViewSet(ModelViewSet):
-    queryset = OrderModel.objects.all()
-    serializer_class = OrderSerializer
-
-
-class OrderItemViewSet(ModelViewSet):
-    queryset = OrderItemModel.objects.all()
-    serializer_class = OrderItemSerializer

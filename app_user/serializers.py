@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from .models import UserModel, MenuItemModel, OrderModel, OrderItemModel
+
+from app_user.models import UserModel
 
 UserChoice = [
-    'admin', 'user', 'courier'
+    'admin', 'user', 'waiter'
 ]
 
 
@@ -42,23 +43,3 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = ['id', 'username', 'role', 'status']
-
-
-class MenuItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MenuItemModel
-        fields = '__all__'
-
-
-class OrderSerializer(serializers.ModelSerializer):
-    order_items = serializers.StringRelatedField(many=True)
-
-    class Meta:
-        model = OrderModel
-        fields = '__all__'
-
-
-class OrderItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OrderItemModel
-        fields = '__all__'

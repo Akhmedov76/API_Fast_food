@@ -24,7 +24,10 @@ class AuthViewSet(ViewSet):
     def login(self, request):
         serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        username = serializer.validated_data['username']
+        user = UserModel.objects.get(username=username)
+        return Response({"message": "User logged in successfully", "user": UserSerializer(user).data},
+                        status=status.HTTP_200_OK)
 
 
 class UserViewSet(ModelViewSet):

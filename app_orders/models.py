@@ -1,7 +1,17 @@
 from django.db import models
 
 from app_menu.models import MenuItemModel
-from app_user.models import UserModel, OrderStatusChoice
+from app_user.models import UserModel
+
+
+class OrderStatusChoice(models.TextChoices):
+    """
+    OrderStatusChoice is a class that contains choices for the order status.
+    """
+    PENDING = "pending", "Pending"
+    ACCEPTED = "accepted", "Accepted"
+    COMPLETED = "completed", "Completed"
+    CANCELLED = "cancelled", "Cancelled"
 
 
 class OrderModel(models.Model):

@@ -20,15 +20,6 @@ class UserStatusChoice(models.TextChoices):
     INACTIVE = "inactive", "Inactive"
 
 
-class OrderStatusChoice(models.TextChoices):
-    """
-    OrderStatusChoice is a class that contains choices for the order status.
-    """
-    PENDING = "pending", "Pending"
-    ACCEPTED = "accepted", "Accepted"
-    COMPLETED = "completed", "Completed"
-    CANCELLED = "cancelled", "Cancelled"
-
 
 class UserModel(AbstractUser):
     """

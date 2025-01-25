@@ -1,7 +1,5 @@
 import os
 from pathlib import Path
-
-from django.core.mail.backends import smtp
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -73,13 +71,6 @@ DATABASES = {
         'PORT': os.getenv("DB_PORT", '5432'),
     }
 }
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT", 587))
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASS = os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True").lower() == "true"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

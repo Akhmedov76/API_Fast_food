@@ -20,7 +20,6 @@ class UserStatusChoice(models.TextChoices):
     INACTIVE = "inactive", "Inactive"
 
 
-
 class UserModel(AbstractUser):
     """
     UserModel is a custom user model that extends the AbstractUser model provided by Django.

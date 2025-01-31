@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AppMenuConfig(AppConfig):
+class MenuConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'app_menu'
+    name = 'menu'

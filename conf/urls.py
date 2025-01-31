@@ -7,9 +7,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('app_user.urls')),
-    path('menu/', include('app_menu.urls')),
-    path('orders/', include('app_orders.urls')),
+    path('users/', include('users.urls')),
+    path('menu/', include('menu.urls')),
+    path('orders/', include('orders.urls')),
 ]
 
 # JWT Authentication

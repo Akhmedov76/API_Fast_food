@@ -6,49 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5b7f1a54-de19-41f9-b1e3-ce07670e50e6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_menu/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_menu/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_menu/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_menu/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_menu/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_menu/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_menu/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_menu/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_menu/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_menu/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/migrations/0002_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/migrations/0003_ordermodel_latitude_ordermodel_longitude.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/migrations/0004_remove_ordermodel_latitude_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/migrations/0005_remove_ordermodel_distance_km.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/migrations/0006_ordermodel_lat_ordermodel_lon.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/migrations/0007_ordermodel_distance_km.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/permissions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_orders/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/permissions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_user/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/conf/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/conf/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/distance_calculation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/geolocation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/get_location.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,29 +38,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.get_location.executor&quot;: &quot;Run&quot;,
-    &quot;Python.serializers.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/victus/Документы/Project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.python.django.customization.DjangoModulesConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.get_location.executor": "Run",
+    "Python.serializers.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/victus/Документы/Project/API_Fast_food/utils",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.python.django.customization.DjangoModulesConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils" />
+      <recent name="$PROJECT_DIR$/users" />
+      <recent name="$PROJECT_DIR$/orders" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="get_location" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="API_Fast_food" />
@@ -166,7 +135,7 @@
       <workItem from="1738300485404" duration="4201000" />
       <workItem from="1738309821207" duration="689000" />
       <workItem from="1738311770425" duration="611000" />
-      <workItem from="1738321096918" duration="1208000" />
+      <workItem from="1738321096918" duration="6227000" />
     </task>
     <servers />
   </component>

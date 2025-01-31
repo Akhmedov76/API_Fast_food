@@ -1,6 +1,12 @@
+import asyncio
+
 from django.db import models
 from django.conf import settings
+from geopy import Nominatim
+from geopy.exc import GeocoderTimedOut
+
 from menu.models import MenuItem
+from utils.geolocations import get_coordinates_from_address
 
 
 class Order(models.Model):
@@ -18,8 +24,8 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     delivery_address = models.TextField()
-    delivery_latitude = models.FloatField(null=True, blank=True)
-    delivery_longitude = models.FloatField(null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
     estimated_delivery_time = models.DateTimeField(null=True, blank=True)
     distance = models.FloatField(help_text='Distance in kilometers', null=True, blank=True)
     delivery_fee = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
@@ -29,10 +35,15 @@ class Order(models.Model):
         return f"Order #{self.id} by {self.user.username}"
 
     def save(self, *args, **kwargs):
-        if self.user.latitude and self.user.longitude:
-            self.delivery_latitude = self.user.latitude
-            self.delivery_longitude = self.user.longitude
-
+        if self.delivery_address and not (self.latitude and self.longitude):
+            try:
+                geolocator = Nominatim(user_agent="my_app")
+                location = geolocator.geocode(self.delivery_address)
+                if location:
+                    self.latitude = location.latitude
+                    self.longitude = location.longitude
+            except GeocoderTimedOut:
+                pass
         super().save(*args, **kwargs)
 
     class Meta:

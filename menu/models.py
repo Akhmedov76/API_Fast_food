@@ -19,7 +19,6 @@ class MenuItem(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='menu_items/', blank=True)
-    preparation_time = models.IntegerField(help_text='Preparation time in minutes')
     is_available = models.BooleanField(default=True)
 
     def __str__(self):

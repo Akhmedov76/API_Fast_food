@@ -9,7 +9,6 @@ from menu.models import MenuItem
 
 
 class OrderViewSet(viewsets.ModelViewSet):
-
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -20,7 +19,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         return Order.objects.filter(user=user)
 
     def calculate_distance(self, lat1, lon1, lat2, lon2):
-        R = 6371  # Earth's radius in kilometers
+        R = 6371
 
         lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
         dlat = lat2 - lat1
@@ -33,12 +32,12 @@ class OrderViewSet(viewsets.ModelViewSet):
         return round(distance, 2)
 
     def calculate_delivery_time(self, distance, total_items):
-        # Calculate cooking time
+
         cooking_batches = (total_items + settings.COOKING_CAPACITY['dishes_per_batch'] - 1) // \
                           settings.COOKING_CAPACITY['dishes_per_batch']
         cooking_time = cooking_batches * settings.COOKING_CAPACITY['minutes_per_batch']
 
-        # Calculate delivery time
+
         delivery_time = distance * settings.DELIVERY_SPEED['minutes_per_km']
 
         return cooking_time + delivery_time
@@ -55,19 +54,14 @@ class OrderViewSet(viewsets.ModelViewSet):
 
         distance = self.calculate_distance(rest_lat, rest_lon, delivery_lat, delivery_lon)
 
-        # Calculate total items and amount
         items_data = serializer.validated_data['items']
         total_items = sum(item['quantity'] for item in items_data)
         total_amount = 0
 
-        # Calculate delivery fee ($2 per km)
         delivery_fee = distance * 2
-
-        # Calculate estimated delivery time
         delivery_minutes = self.calculate_delivery_time(distance, total_items)
         estimated_delivery_time = datetime.now() + timedelta(minutes=delivery_minutes)
 
-        # Create order
         order = Order.objects.create(
             user=request.user,
             delivery_address=serializer.validated_data['delivery_address'],
@@ -76,10 +70,9 @@ class OrderViewSet(viewsets.ModelViewSet):
             distance=distance,
             delivery_fee=delivery_fee,
             estimated_delivery_time=estimated_delivery_time,
-            total_amount=total_amount  # Will be updated after adding items
+            total_amount=total_amount
         )
 
-        # Create order items
         for item_data in items_data:
             menu_item = MenuItem.objects.get(id=item_data['menu_item'])
             quantity = item_data['quantity']
@@ -93,7 +86,6 @@ class OrderViewSet(viewsets.ModelViewSet):
                 price=price
             )
 
-        # Update total amount
         order.total_amount = total_amount + delivery_fee
         order.save()
 

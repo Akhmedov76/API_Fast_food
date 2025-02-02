@@ -1,7 +1,6 @@
 import math
-
-from menu.serializers import MenuItemSerializer
 from rest_framework import serializers
+from menu.serializers import MenuItemSerializer
 from .models import Order, OrderItem, MenuItem
 
 
@@ -32,8 +31,8 @@ class CreateOrderSerializer(serializers.ModelSerializer):
         for item in value:
             menu_item_id = item.get('menu_item_id')
             quantity = item.get('quantity')
-            if not menu_item_id or not quantity:
-                raise serializers.ValidationError("Missing menu item ID or quantity.")
+            if not menu_item_id or not quantity or int(quantity) <= 0:
+                raise serializers.ValidationError("Missing menu item ID or quantity (must be > 0).")
             try:
                 menu_item = MenuItem.objects.get(id=menu_item_id)
                 item['menu_item'] = menu_item
@@ -65,3 +64,9 @@ class CreateOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
+        extra_kwargs = {
+            'user': {'read_only': True},
+            'status': {'read_only': True},
+            'estimated_delivery_time': {'read_only': True},
+            'total_amount': {'read_only': True},
+        }

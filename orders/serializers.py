@@ -19,14 +19,28 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
-        read_only_fields = ('user', 'status', 'estimated_delivery_time', 'delivery_fee', 'total_amount')
+        read_only_fields = ('user', 'status', 'estimated_delivery_time', 'total_amount')
+
+
+import math
+from rest_framework import serializers
+from .models import Order, OrderItem, MenuItem
 
 
 class CreateOrderSerializer(serializers.ModelSerializer):
-    latitude = serializers.FloatField()
-    longitude = serializers.FloatField()
+    latitude = serializers.FloatField(required=False, allow_null=True)
+    longitude = serializers.FloatField(required=False, allow_null=True)
     delivery_address = serializers.CharField(max_length=255)
     items = serializers.ListField(child=serializers.DictField())
+
+    def validate(self, attrs):
+        lat = attrs.get('latitude')
+        lon = attrs.get('longitude')
+        if lat is not None and (lat < -90 or lat > 90):
+            raise serializers.ValidationError("Latitude must be between -90 and 90.")
+        if lon is not None and (lon < -180 or lon > 180):
+            raise serializers.ValidationError("Longitude must be between -180 and 180.")
+        return attrs
 
     def validate_items(self, value):
         for item in value:
@@ -51,7 +65,12 @@ class CreateOrderSerializer(serializers.ModelSerializer):
             quantity = item_data.pop('quantity')
             price = menu_item.price * quantity
             total_amount += price
-            OrderItem.objects.create(order=order, menu_item=menu_item, quantity=quantity, price=price)
+            OrderItem.objects.create(
+                order=order,
+                menu_item=menu_item,
+                quantity=quantity,
+                price=price
+            )
 
         order.total_amount = total_amount
         order.save()

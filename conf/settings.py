@@ -125,6 +125,6 @@ COOKING_CAPACITY = {
     'minutes_per_batch': 5
 }
 
-DELIVERY_SPEED = {
+DELIVERY_MIN = {
     'minutes_per_km': 3
 }

@@ -33,15 +33,6 @@ class CreateOrderSerializer(serializers.ModelSerializer):
     delivery_address = serializers.CharField(max_length=255)
     items = serializers.ListField(child=serializers.DictField())
 
-    def validate(self, attrs):
-        lat = attrs.get('latitude')
-        lon = attrs.get('longitude')
-        if lat is not None and (lat < -90 or lat > 90):
-            raise serializers.ValidationError("Latitude must be between -90 and 90.")
-        if lon is not None and (lon < -180 or lon > 180):
-            raise serializers.ValidationError("Longitude must be between -180 and 180.")
-        return attrs
-
     def validate_items(self, value):
         for item in value:
             menu_item_id = item.get('menu_item_id')

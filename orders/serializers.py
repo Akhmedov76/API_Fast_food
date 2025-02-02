@@ -1,8 +1,8 @@
-from rest_framework import serializers
+import math
 
-from menu.models import MenuItem
-from .models import Order, OrderItem
 from menu.serializers import MenuItemSerializer
+from rest_framework import serializers
+from .models import Order, OrderItem, MenuItem
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -20,11 +20,6 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = '__all__'
         read_only_fields = ('user', 'status', 'estimated_delivery_time', 'total_amount')
-
-
-import math
-from rest_framework import serializers
-from .models import Order, OrderItem, MenuItem
 
 
 class CreateOrderSerializer(serializers.ModelSerializer):

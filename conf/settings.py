@@ -11,6 +11,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,8 +117,8 @@ SWAGGER_SETTINGS = {
 }
 
 RESTAURANT_LOCATION = {
-    'latitude': 41.311081,
-    'longitude': 69.240562
+    'latitude': 41.329341645570615,
+    'longitude': 69.24005138812524
 }
 
 COOKING_CAPACITY = {

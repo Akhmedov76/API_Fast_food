@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FastFood Delivery</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .menu-item:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-4">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-4 rounded-lg mb-6">
+      <h1 class="text-3xl font-bold text-center">FastFood Delivery System</h1>
+    </header>
+
+    <!-- Menu Section -->
+    <section id="menu" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Menu</h2>
+      <div id="menu-items" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Menu items will be dynamically loaded here -->
+      </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Place Your Order</h2>
+      <form id="order-form" class="bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-4">
+          <label for="item" class="block text-gray-700">Select Item</label>
+          <select id="item" class="w-full p-2 border border-gray-300 rounded" required>
+            <!-- Items will be dynamically populated -->
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="quantity" class="block text-gray-700">Quantity</label>
+          <input type="number" id="quantity" class="w-full p-2 border border-gray-300 rounded" min="1" required>
+        </div>
+        <div class="mb-4">
+          <label for="address" class="block text-gray-700">Delivery Address</label>
+          <input type="text" id="address" class="w-full p-2 border border-gray-300 rounded" required>
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Place Order</button>
+      </form>
+    </section>
+
+    <!-- Order Details Section -->
+    <section id="order-details" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Your Orders</h2>
+      <div id="orders-list" class="bg-white p-6 rounded-lg shadow-md">
+        <!-- Orders will be dynamically loaded here -->
+      </div>
+    </section>
+
+    <!-- Delivery Estimate Section -->
+    <section id="delivery-estimate" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Delivery Estimate</h2>
+      <div id="estimate-result" class="bg-white p-6 rounded-lg shadow-md">
+        <p class="text-gray-700">Your estimated delivery time will appear here.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Mock Data
+    const menuItems = [
+      { id: 1, name: "Burger", price: 5 },
+      { id: 2, name: "Pizza", price: 10 },
+      { id: 3, name: "Fries", price: 3 },
+      { id: 4, name: "Soda", price: 2 },
+    ];
+
+    let orders = [];
+
+    // Load Menu Items
+    const loadMenu = () => {
+      const menuContainer = document.getElementById("menu-items");
+      const itemSelect = document.getElementById("item");
+
+      menuItems.forEach(item => {
+        // Add to Menu Section
+        menuContainer.innerHTML += `
+          <div class="menu-item bg-white p-4 rounded-lg shadow-md text-center">
+            <h3 class="text-xl font-semibold">${item.name}</h3>
+            <p class="text-gray-600">$${item.price}</p>
+          </div>
+        `;
+
+        // Add to Order Form Dropdown
+        itemSelect.innerHTML += `<option value="${item.id}">${item.name} - $${item.price}</option>`;
+      });
+    };
+
+    // Place Order
+    document.getElementById("order-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const itemId = parseInt(document.getElementById("item").value);
+      const quantity = parseInt(document.getElementById("quantity").value);
+      const address = document.getElementById("address").value;
+
+      const selectedItem = menuItems.find(item => item.id === itemId);
+      const order = {
+        id: orders.length + 1,
+        item: selectedItem.name,
+        quantity,
+        total: selectedItem.price * quantity,
+        address,
+        status: "Pending",
+      };
+
+      orders.push(order);
+      updateOrderList();
+      calculateDeliveryTime(orders.length);
+    });
+
+    // Update Order List
+    const updateOrderList = () => {
+      const ordersList = document.getElementById("orders-list");
+      ordersList.innerHTML = "";
+
+      orders.forEach(order => {
+        ordersList.innerHTML += `
+          <div class="mb-4 p-4 border-b border-gray-200">
+            <h3 class="text-lg font-semibold">${order.item} (x${order.quantity})</h3>
+            <p class="text-gray-600">Total: $${order.total}</p>
+            <p class="text-gray-600">Address: ${order.address}</p>
+            <p class="text-gray-600">Status: ${order.status}</p>
+          </div>
+        `;
+      });
+    };
+
+    // Calculate Delivery Time
+    const calculateDeliveryTime = (orderCount) => {
+      const preparationTime = (orderCount / 4) * 5; // 5 minutes per 4 items
+      const deliveryTime = 3 * 5; // Assuming 5km distance (3 minutes per km)
+      const totalTime = preparationTime + deliveryTime;
+
+      document.getElementById("estimate-result").innerHTML = `
+        <p class="text-green-600 font-semibold">Estimated Delivery Time: ${totalTime.toFixed(0)} minutes</p>
+      `;
+    };
+
+    // Initialize
+    loadMenu();
+  </script>
+</body>
+</html>

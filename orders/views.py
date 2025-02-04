@@ -1,7 +1,7 @@
 import math
 from datetime import timedelta
 import geopy.distance
-
+from geopy.distance import geodesic
 from django.conf import settings
 from django.db import transaction
 from django.utils import timezone
@@ -15,6 +15,7 @@ from .serializers import OrderSerializer, CreateOrderSerializer
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
+    queryset = Order.objects.all()
 
     def calculate_delivery_time(self, distance, total_items):
         cooking_time = math.ceil(total_items / 4) * 5
@@ -26,16 +27,9 @@ class OrderViewSet(viewsets.ModelViewSet):
         serializer = CreateOrderSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        rest_location = (
-            settings.RESTAURANT_LOCATION['latitude'],
-            settings.RESTAURANT_LOCATION['longitude']
-        )
+        order = serializer.save(user=request.user)
 
-        delivery_lat = serializer.validated_data['latitude']
-        delivery_lon = serializer.validated_data['longitude']
-        client_location = (delivery_lat, delivery_lon)
-
-        distance = geopy.distance.geodesic(rest_location, client_location).km
+        distance = order.distance
         print(f"Masofa: {distance} km")
 
         items_data = serializer.validated_data['items']

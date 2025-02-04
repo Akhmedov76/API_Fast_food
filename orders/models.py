@@ -20,7 +20,6 @@ class Order(models.Model):
     )
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -31,21 +30,19 @@ class Order(models.Model):
     distance = models.FloatField(help_text='Distance in kilometers', null=True, blank=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
-    def calculate_estimated_delivery_time(self):
-        preparation_time = (self.menu_item.count() // 4) * 5
-
-        delivery_time = self.distance * 3
-
-        total_time_minutes = preparation_time + delivery_time
-
-        estimated_delivery_time = self.created_at + timedelta(minutes=total_time_minutes)
-        return estimated_delivery_time
+    def update_total_amount(self):
+        total = sum(item.menu_item.price * item.quantity for item in self.items.all())
+        self.total_amount = total
+        self.save(update_fields=['total_amount'])
 
     def save(self, *args, **kwargs):
+        is_new = self.pk is None
+
         if (self.latitude is None or self.longitude is None) and self.delivery_address:
             coordinates = asyncio.run(get_coordinates_from_address(self.delivery_address))
             if coordinates and isinstance(coordinates, tuple):
                 self.latitude, self.longitude = coordinates
+
         if self.latitude is not None and self.longitude is not None:
             rest_location = (
                 settings.RESTAURANT_LOCATION['latitude'],
@@ -54,9 +51,19 @@ class Order(models.Model):
             client_location = (self.latitude, self.longitude)
             self.distance = geodesic(rest_location, client_location).km
 
-        self.estimated_delivery_time = self.calculate_estimated_delivery_time()
-
         super().save(*args, **kwargs)
+
+        if is_new:
+            self.update_estimated_delivery_time()
+            self.update_total_amount()
+
+    def update_estimated_delivery_time(self):
+        total_quantity = sum(item.quantity for item in self.items.all())
+        preparation_time = (total_quantity // 4) * 5
+        delivery_time = self.distance * 3 if self.distance else 0
+        total_time_minutes = preparation_time + delivery_time
+        self.estimated_delivery_time = self.created_at + timedelta(minutes=total_time_minutes)
+        self.save(update_fields=['estimated_delivery_time'])
 
     class Meta:
         verbose_name = 'Order'
@@ -67,7 +74,12 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    # price = models.DecimalField(max_digits=10, decimal_places=2)
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.order.update_total_amount()
+        self.order.update_estimated_delivery_time()
 
     def __str__(self):
         return f"{self.quantity}x {self.menu_item.name}"

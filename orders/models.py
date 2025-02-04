@@ -50,6 +50,7 @@ class Order(models.Model):
             )
             client_location = (self.latitude, self.longitude)
             self.distance = geodesic(rest_location, client_location).km
+            self.distance = round(self.distance, 2)
 
         super().save(*args, **kwargs)
 
@@ -64,6 +65,9 @@ class Order(models.Model):
         total_time_minutes = preparation_time + delivery_time
         self.estimated_delivery_time = self.created_at + timedelta(minutes=total_time_minutes)
         self.save(update_fields=['estimated_delivery_time'])
+
+    def __str__(self):
+        return f"{self.user}, Address: {self.delivery_address}, Quantity: {self.id}, Status: {self.status} "
 
     class Meta:
         verbose_name = 'Order'

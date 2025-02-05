@@ -1,0 +1,103 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-05 23:01+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: conf/settings.py:86
+msgid "Uzbek"
+msgstr "O'zbekcha"
+
+#: conf/settings.py:87
+msgid "English"
+msgstr "Inglizcha"
+
+#: conf/settings.py:88
+msgid "Russian"
+msgstr "Ruscha"
+
+#: orders/models.py:30
+msgid "Distance in kilometers"
+msgstr "Kilometrlardagi masofa"
+
+#: orders/models.py:73
+msgid "Order"
+msgstr "Buyurtma"
+
+#: orders/models.py:74
+msgid "Orders"
+msgstr "Buyurtmalar"
+
+#: orders/models.py:92
+msgid "Order Item"
+msgstr "Buyurtma elementi"
+
+#: orders/models.py:93
+msgid "Order Items"
+msgstr "Buyurtma elementlari"
+
+#: users/admin.py:13
+msgid "User info"
+msgstr "Foydalanuvchi ma'lumotlari"
+
+#: users/admin.py:14
+#, fuzzy
+#| msgid "User info"
+msgid "Personal info"
+msgstr "Foydalanuvchi ma'lumotlari"
+
+#: users/admin.py:15
+msgid "Permissions"
+msgstr "Ruxsatlar"
+
+#: users/admin.py:18
+msgid "username"
+msgstr "foydalanuvchi nomi"
+
+#: users/admin.py:18
+msgid "email"
+msgstr "elektron pochta"
+
+#: users/admin.py:18
+msgid "phone"
+msgstr "telefon raqam"
+
+#: users/admin.py:25
+msgid "Restaurant"
+msgstr "Restoran"
+
+#: users/admin.py:26
+msgid "My Admin"
+msgstr "Mening Adminim"
+
+#: users/admin.py:27
+msgid "Welcome to My Dashboard"
+msgstr "Mening boshqaruv panelimga xush kelibsiz"
+
+#: users/models.py:35
+#, fuzzy
+#| msgid "User info"
+msgid "User"
+msgstr "Foydalanuvchi ma'lumotlari"
+
+#: users/models.py:36
+msgid "Users"
+msgstr "Foydalanuvchilar"
+
+#: users/serializers.py:9
+msgid "role"
+msgstr "Roli"

@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 from datetime import timedelta
+from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -79,14 +80,22 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+LANGUAGE_CODE = 'uz'
 
-LANGUAGE_CODE = 'en'
+LANGUAGES = [
+    ('uz', _('Uzbek')),
+    ('en', _('English')),
+    ('ru', _('Russian')),
+]
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
 TIME_ZONE = 'Asia/Tashkent'
 USE_I18N = True
 USE_TZ = True
 
+LOCALE_PATHS = BASE_DIR / 'locale',
+
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

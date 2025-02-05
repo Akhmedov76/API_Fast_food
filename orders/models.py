@@ -7,7 +7,7 @@ from rest_framework import serializers
 
 from menu.models import MenuItem
 from utils.geolocations import get_coordinates_from_address
-
+from django.utils.translation import gettext_lazy as _
 
 class Order(models.Model):
     STATUS_CHOICES = (
@@ -27,7 +27,7 @@ class Order(models.Model):
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
     estimated_delivery_time = models.DateTimeField(null=True, blank=True)
-    distance = models.FloatField(help_text='Distance in kilometers', null=True, blank=True)
+    distance = models.FloatField(help_text=_('Distance in kilometers'), null=True, blank=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     def update_total_amount(self):
@@ -70,8 +70,8 @@ class Order(models.Model):
         return f"{self.user}, Address: {self.delivery_address}, Quantity: {self.id}, Status: {self.status} "
 
     class Meta:
-        verbose_name = 'Order'
-        verbose_name_plural = 'Orders'
+        verbose_name = _('Order')
+        verbose_name_plural = _('Orders')
 
 
 class OrderItem(models.Model):
@@ -89,5 +89,5 @@ class OrderItem(models.Model):
         return f"{self.quantity}x {self.menu_item.name}"
 
     class Meta:
-        verbose_name = 'Order Item'
-        verbose_name_plural = 'Order Items'
+        verbose_name = _('Order Item')
+        verbose_name_plural = _('Order Items')

@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b7f1a54-de19-41f9-b1e3-ce07670e50e6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/API_Fast_food.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/API_Fast_food.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env.txt" beforeDir="false" afterPath="$PROJECT_DIR$/env.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/conf/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/conf/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/base_site.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/img/img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/bootstrap-restaurant-template.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contact.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/menu.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/service.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/team.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/testimonial.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +59,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/victus/Документы/Project/API_Fast_food/templates/admin&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/victus/Документы/Project/API_Fast_food/assets&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -63,11 +76,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets" />
       <recent name="$PROJECT_DIR$/templates/admin" />
       <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/users" />
       <recent name="$PROJECT_DIR$/orders" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates/admin/img" />
@@ -152,7 +165,11 @@
       <workItem from="1738663194756" duration="1937000" />
       <workItem from="1738681612486" duration="1662000" />
       <workItem from="1738686332445" duration="632000" />
-      <workItem from="1738763614915" duration="10422000" />
+      <workItem from="1738763614915" duration="10963000" />
+      <workItem from="1738815243820" duration="463000" />
+      <workItem from="1738819865050" duration="1428000" />
+      <workItem from="1738860628461" duration="2964000" />
+      <workItem from="1738901972570" duration="2412000" />
     </task>
     <servers />
   </component>

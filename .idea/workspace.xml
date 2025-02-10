@@ -5,21 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b7f1a54-de19-41f9-b1e3-ce07670e50e6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/API_Fast_food.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/API_Fast_food.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/conf/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/conf/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/base_site.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/img/img.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/booking.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bootstrap-restaurant-template.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/service.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/team.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/testimonial.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/uz/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/locale/uz/LC_MESSAGES/django.po" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +164,8 @@
       <workItem from="1738815243820" duration="463000" />
       <workItem from="1738819865050" duration="1428000" />
       <workItem from="1738860628461" duration="2964000" />
-      <workItem from="1738901972570" duration="2412000" />
+      <workItem from="1738901972570" duration="7256000" />
+      <workItem from="1739162021002" duration="1407000" />
     </task>
     <servers />
   </component>
